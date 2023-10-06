@@ -1,16 +1,25 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 
 import {Link, useParams} from 'react-router-dom'
 import Rating from '../component/Rating'
-import products from '../products'
+
 import { Button, Card, Col, Image, ListGroup, Row } from 'react-bootstrap'
-
-
+import api from '../api/api'; 
 
 const ProductScreen = () => {    
     const { id } = useParams();
-    const product = products.find((p) => p._id === id)
+    const [product,setProduct] = useState([])
+    useEffect(() => {
+        api.get(`/api/products/${id}`)
+          .then((response) => {
+            setProduct(response.data);
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      }, []);
+
   return (
     <div>
         <Link  to='/' className='btn btn-light'>Go Back</Link>
