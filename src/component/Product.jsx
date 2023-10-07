@@ -16,6 +16,10 @@ const Product = ({product}) => {
             </Card.Title>
         </Link>
         <Card.Text as='div'>
+        <div className='my-3'>
+
+  <p>{product.description}</p>
+</div>
              <div className='my-3'>
 
                 <Rating value={product.rating}  text={`${product.numReviews} reviews `} color={'#68682b'} />
